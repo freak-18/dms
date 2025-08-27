@@ -1,34 +1,48 @@
 package com.examly.springapp.model;
 
 import jakarta.persistence.*;
-import java.util.List;
+import jakarta.validation.constraints.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class NGO {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    private String name;
-    private String contactEmail;
-    private String registrationNumber;
+  @NotBlank
+  @Size(max = 100)
+  private String name;
 
-    @OneToMany(mappedBy = "ngo", cascade = CascadeType.ALL)
-    private List<Cause> causes;
+  @Size(max = 500)
+  private String description;
 
-    // Getters & Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+  @NotBlank
+  @Email
+  private String contactEmail;
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+  @NotBlank
+  @Column(unique = true)
+  private String registrationNumber;
 
-    public String getContactEmail() { return contactEmail; }
-    public void setContactEmail(String contactEmail) { this.contactEmail = contactEmail; }
+  private LocalDateTime createdAt = LocalDateTime.now();
 
-    public String getRegistrationNumber() { return registrationNumber; }
-    public void setRegistrationNumber(String registrationNumber) { this.registrationNumber = registrationNumber; }
+  public Long getId() { return id; }
+  public void setId(Long id) { this.id = id; }
 
-    public List<Cause> getCauses() { return causes; }
-    public void setCauses(List<Cause> causes) { this.causes = causes; }
+  public String getName() { return name; }
+  public void setName(String name) { this.name = name; }
+
+  public String getDescription() { return description; }
+  public void setDescription(String description) { this.description = description; }
+
+  public String getContactEmail() { return contactEmail; }
+  public void setContactEmail(String contactEmail) { this.contactEmail = contactEmail; }
+
+  public String getRegistrationNumber() { return registrationNumber; }
+  public void setRegistrationNumber(String registrationNumber) { this.registrationNumber = registrationNumber; }
+
+  public LocalDateTime getCreatedAt() { return createdAt; }
+  public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 }
+

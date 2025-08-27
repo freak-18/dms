@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useNavigate} from 'react-router-dom';
+import CausesList from './CausesList';
 
 function Home() {
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ function Home() {
      Browse causes and make a difference today!
     </p>
     
-    <button className="btn btn-primary btn-lg mt-3" onclick={()=> navigate('/causes')}>
+    <button className="btn btn-primary btn-lg mt-3" onclick={()=> navigate(<CausesList/>)}>
      Explore Causes
     </button>
    </div>

@@ -1,7 +1,7 @@
 // api.js – Connects React frontend to Spring Boot backend
 import axios from "axios";
 
-const API_BASE = "https://8080-dceeddfbaddeebdedeacdadbaffdcfddeefbafdffade.premiumproject.examly.io"; 
+const API_BASE = "https://ide-dceeddfbaddeebdedeacdadbaffdcfddeefbafdffade.premiumproject.examly.io/proxy/8080/api"; 
 
 
 // Get all active causes

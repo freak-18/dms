@@ -2,39 +2,34 @@ package com.examly.springapp.controller;
 
 import com.examly.springapp.model.NGO;
 import com.examly.springapp.service.NGOService;
-import jakarta.persistence.EntityNotFoundException;
-import org.springframework.http.HttpStatus;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/ngos")
 public class NGOController {
-    private final NGOService ngoService;
+  private final NGOService ngoService;
 
-    public NGOController(NGOService ngoService) {
-        this.ngoService = ngoService;
-    }
+  public NGOController(NGOService ngoService) {
+    this.ngoService = ngoService;
+  }
 
-    @PostMapping
-    public ResponseEntity<NGO> createNGO(@RequestBody NGO ngo) {
-        return new ResponseEntity<>(ngoService.createNGO(ngo), HttpStatus.CREATED);
-    }
+  @PostMapping
+  public ResponseEntity<NGO> create(@Valid @RequestBody NGO ngo) {
+    return ResponseEntity.status(201).body(ngoService.createNGO(ngo));
+  }
 
-    @GetMapping
-    public List<NGO> getAllNGOs() {
-        return ngoService.getAllNGOs();
-    }
+  @GetMapping
+  public List<NGO> getAll() {
+    return ngoService.getAllNGOs();
+  }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getNGOById(@PathVariable Long id) {
-        try {
-            return ResponseEntity.ok(ngoService.getNGOById(id));
-        } catch (EntityNotFoundException e) {
-            return new ResponseEntity<>(Map.of("message", e.getMessage()), HttpStatus.NOT_FOUND);
-        }
-    }
+  @GetMapping("/{id}")
+  public NGO getById(@PathVariable Long id) {
+    return ngoService.getById(id);
+  }
 }
+
