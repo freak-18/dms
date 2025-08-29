@@ -1,8 +1,9 @@
+// src/main/java/com/examly/springapp/controller/NGOController.java
 package com.examly.springapp.controller;
 
 import com.examly.springapp.model.NGO;
 import com.examly.springapp.service.NGOService;
-import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,25 +12,27 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/ngos")
 public class NGOController {
-  private final NGOService ngoService;
 
-  public NGOController(NGOService ngoService) {
-    this.ngoService = ngoService;
-  }
+    private final NGOService ngoService;
 
-  @PostMapping
-  public ResponseEntity<NGO> create(@Valid @RequestBody NGO ngo) {
-    return ResponseEntity.status(201).body(ngoService.createNGO(ngo));
-  }
+    public NGOController(NGOService ngoService) {
+        this.ngoService = ngoService;
+    }
 
-  @GetMapping
-  public List<NGO> getAll() {
-    return ngoService.getAllNGOs();
-  }
+    @PostMapping
+    public ResponseEntity<NGO> create(@RequestBody NGO ngo) {
+        NGO saved = ngoService.createNGO(ngo);
+        return ResponseEntity.status(HttpStatus.CREATED).body(saved);
+    }
 
-  @GetMapping("/{id}")
-  public NGO getById(@PathVariable Long id) {
-    return ngoService.getById(id);
-  }
+    @GetMapping
+    public List<NGO> all() {
+        return ngoService.getAllNGOs();
+    }
+
+    @GetMapping("/{id}")
+    public NGO getById(@PathVariable long id) {
+        // Test expects 404 with {"message":"NGO not found"} handled by @ControllerAdvice
+        return ngoService.getNGOById(id);
+    }
 }
-

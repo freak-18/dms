@@ -12,7 +12,7 @@ public class WebConfig {
     return new WebMvcConfigurer() {
       @Override
       public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedOrigins("*").allowedMethods("*");
+        registry.addMapping("/**").allowedOrigins("https://8081-dceeddfbaddeebdedeacdadbaffdcfddeefbafdffade.premiumproject.examly.io/").allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS");
       }
     };
   }
