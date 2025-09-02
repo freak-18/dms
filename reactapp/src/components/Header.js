@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 function Header() {
   return (
@@ -34,9 +35,24 @@ function Header() {
                 </Link>
               </li>
               <li className="nav-item">
+                <Link className="nav-link" to="/search-causes">
+                  Search
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link className="nav-link" to="/about">
                   About
                 </Link>
+              </li>
+              <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                  Login
+                </a>
+                <ul className="dropdown-menu">
+                  <li><Link className="dropdown-item" to="/admin/login">Admin Login</Link></li>
+                  <li><Link className="dropdown-item" to="/ngo/login">NGO Login</Link></li>
+                  <li><Link className="dropdown-item" to="/donor/login">Donor Login</Link></li>
+                </ul>
               </li>
             </ul>
           </div>

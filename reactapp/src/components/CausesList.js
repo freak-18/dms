@@ -127,7 +127,10 @@ function CausesList() {
 
  const getNGOName = (id) => ngos.find(n => n.id === id)?.name || 'Unknown NGO';
 
- const getProgress = (current, target) => Math.min((current / target) * 100, 100);
+ const getProgress = (current, target) => {
+   if (!current || !target || target === 0) return 0;
+   return Math.min(Math.max((current / target) * 100, 0), 100);
+ };
 
  return (
   <div className="container py-5">
@@ -152,11 +155,14 @@ function CausesList() {
            <span className="text-sm text-muted">Progress</span>
            <span className="text-sm font-medium">{progress.toFixed(0)}%</span>
           </div>
-          <div className="progress mb-2">
+          <div className="progress mb-2" style={{ height: '8px' }}>
            <div 
-            className="progress-bar" 
-            style={{ width: `${progress}%` }}
+            className="progress-bar bg-success" 
+            style={{ width: `${progress.toFixed(1)}%` }}
             role="progressbar"
+            aria-valuenow={progress.toFixed(1)}
+            aria-valuemin="0"
+            aria-valuemax="100"
            ></div>
           </div>
           <div className="d-flex justify-content-between text-sm">

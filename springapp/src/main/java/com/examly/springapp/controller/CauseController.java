@@ -53,4 +53,26 @@ public class CauseController {
     public Map<String, Object> getSummary() {
         return causeService.getCausesSummary();
     }
+
+    @GetMapping("/search")
+    public List<Cause> searchCauses(@RequestParam(required = false) String query,
+                                   @RequestParam(required = false) String category,
+                                   @RequestParam(required = false) String ngoName) {
+        List<Cause> causes = causeService.getAllActiveCauses();
+        
+        if (query != null && !query.isEmpty()) {
+            causes = causes.stream()
+                    .filter(cause -> cause.getTitle().toLowerCase().contains(query.toLowerCase()) ||
+                                   cause.getDescription().toLowerCase().contains(query.toLowerCase()))
+                    .toList();
+        }
+        
+        if (category != null && !category.isEmpty()) {
+            causes = causes.stream()
+                    .filter(cause -> category.equals(cause.getCategory()))
+                    .toList();
+        }
+        
+        return causes;
+    }
 }
