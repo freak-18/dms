@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import java.time.LocalDateTime;
+
 
 @Entity
 @Table(name = "ngo", uniqueConstraints = {
@@ -31,13 +31,7 @@ public class NGO {
     @Column(name = "registration_number", nullable = false, unique = true)
     private String registrationNumber;
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
 
-    @PrePersist
-    public void prePersist() {
-        if (createdAt == null) createdAt = LocalDateTime.now();
-    }
 
     // getters & setters
     public Long getId() { return id; }
@@ -55,6 +49,5 @@ public class NGO {
     public String getRegistrationNumber() { return registrationNumber; }
     public void setRegistrationNumber(String registrationNumber) { this.registrationNumber = registrationNumber; }
 
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+
 }

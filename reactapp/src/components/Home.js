@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getCausesSummary } from '../utils/api';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Home() {
  const navigate = useNavigate();
+ const [summary, setSummary] = useState({ activeCauses: 0, totalGoalAmount: 0 });
+
+ useEffect(() => {
+  async function fetchSummary() {
+   try {
+    const data = await getCausesSummary();
+    setSummary(data);
+   } catch (err) {
+    console.error('Failed to fetch summary:', err);
+   }
+  }
+  fetchSummary();
+ }, []);
 
  return (
   <div>
@@ -34,6 +48,26 @@ function Home() {
       <div className="col-lg-6 text-center">
        <div className="display-1 mb-3">🌟</div>
        <h3 className="h5 text-light">Making Impact Together</h3>
+      </div>
+     </div>
+    </div>
+   </section>
+
+   {/* Summary Section */}
+   <section className="py-4 border-bottom">
+    <div className="container">
+     <div className="row text-center">
+      <div className="col-md-6">
+       <div className="p-3">
+        <h3 className="h2 text-primary mb-1">{summary.activeCauses}</h3>
+        <p className="text-muted mb-0">Active Causes</p>
+       </div>
+      </div>
+      <div className="col-md-6">
+       <div className="p-3">
+        <h3 className="h2 text-success mb-1">${summary.totalGoalAmount?.toLocaleString()}</h3>
+        <p className="text-muted mb-0">Total Goal Amount</p>
+       </div>
       </div>
      </div>
     </div>

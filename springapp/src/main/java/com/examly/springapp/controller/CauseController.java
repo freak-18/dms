@@ -48,4 +48,9 @@ public class CauseController {
     public Cause getById(@PathVariable long id) {
         return causeService.getCauseById(id);
     }
+
+    @GetMapping("/summary")
+    public Map<String, Object> getSummary() {
+        return causeService.getCausesSummary();
+    }
 }

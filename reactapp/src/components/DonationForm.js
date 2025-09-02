@@ -38,8 +38,8 @@ function DonationForm({ causeId, onSuccess }) {
   try {
    await submitDonation(causeId, form);
    setSuccess(true);
+   if (onSuccess) onSuccess(form);
    setForm({ amount: '', donorName: '', donorEmail: '', isAnonymous: false, message: '' });
-   if (onSuccess) onSuccess();
   } catch (err) {
    setError(err.response?.data?.message || 'Donation failed');
   } finally {

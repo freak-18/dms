@@ -9,8 +9,11 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CauseService {
@@ -49,5 +52,17 @@ public class CauseService {
     public Cause getCauseById(long id) {
         return causeRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Cause not found"));
+    }
+
+    public Map<String, Object> getCausesSummary() {
+        List<Cause> activeCauses = getAllActiveCauses();
+        BigDecimal totalGoalAmount = activeCauses.stream()
+                .map(Cause::getTargetAmount)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        
+        Map<String, Object> summary = new HashMap<>();
+        summary.put("activeCauses", activeCauses.size());
+        summary.put("totalGoalAmount", totalGoalAmount);
+        return summary;
     }
 }

@@ -40,7 +40,6 @@ public class Cause {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ngo_id")
-    @JsonIgnore
     private NGO ngo;
 
     @PrePersist @PreUpdate
@@ -61,5 +60,6 @@ public class Cause {
     public LocalDate getEndDate() { return endDate; } public void setEndDate(LocalDate endDate) { this.endDate = endDate; }
     public Boolean getIsActive() { return isActive; } public void setIsActive(Boolean active) { isActive = active; }
     public NGO getNgo() { return ngo; } public void setNgo(NGO ngo) { this.ngo = ngo; }
+    @com.fasterxml.jackson.annotation.JsonProperty("ngoId")
     public Long getNgoId() { return ngo != null ? ngo.getId() : null; }
 }

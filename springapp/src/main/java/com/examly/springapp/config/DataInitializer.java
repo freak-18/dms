@@ -78,6 +78,7 @@ public class DataInitializer implements CommandLineRunner {
             cause3.setStartDate(LocalDate.now().minusWeeks(3));
             cause3.setEndDate(LocalDate.now().plusMonths(3));
             causeRepository.save(cause3);
+            System.out.println("Sample data created successfully!");
         }
     }
 }
