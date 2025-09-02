@@ -1,0 +1,165 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------------< [0;36mcom.examly:springapp[0;1m >------------------------[m
+[[1;34mINFO[m] [1mBuilding Complaint Management System 0.0.1-SNAPSHOT[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m>>> [0;32mspring-boot-maven-plugin:3.3.5:run[m [1m(default-cli)[0;1m > [0;1mtest-compile[m @ [36mspringapp[0;1m >>>[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:resources[m [1m(default-resources)[m @ [36mspringapp[0;1m ---[m
+[[1;34mINFO[m] Copying 1 resource from src/main/resources to target/classes
+[[1;34mINFO[m] Copying 0 resource from src/main/resources to target/classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.13.0:compile[m [1m(default-compile)[m @ [36mspringapp[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:testResources[m [1m(default-testResources)[m @ [36mspringapp[0;1m ---[m
+[[1;34mINFO[m] skip non existing resourceDirectory /home/coder/project/workspace/springapp/src/test/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.13.0:testCompile[m [1m(default-testCompile)[m @ [36mspringapp[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m<<< [0;32mspring-boot-maven-plugin:3.3.5:run[m [1m(default-cli)[0;1m < [0;1mtest-compile[m @ [36mspringapp[0;1m <<<[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mspring-boot-maven-plugin:3.3.5:run[m [1m(default-cli)[m @ [36mspringapp[0;1m ---[m
+[[1;34mINFO[m] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.5)
+
+2025-09-02T06:15:10.973Z  INFO 14584 --- [           main] .e.s.DonationManagementSystemApplication : Starting DonationManagementSystemApplication using Java 17.0.15 with PID 14584 (/home/coder/project/workspace/springapp/target/classes started by coder in /home/coder/project/workspace/springapp)
+2025-09-02T06:15:10.975Z  INFO 14584 --- [           main] .e.s.DonationManagementSystemApplication : No active profile set, falling back to 1 default profile: "default"
+2025-09-02T06:15:11.382Z  INFO 14584 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-02T06:15:11.421Z  INFO 14584 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 34 ms. Found 4 JPA repository interfaces.
+2025-09-02T06:15:11.783Z  INFO 14584 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-02T06:15:11.792Z  INFO 14584 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-02T06:15:11.792Z  INFO 14584 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2025-09-02T06:15:11.827Z  INFO 14584 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-02T06:15:11.828Z  INFO 14584 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 824 ms
+2025-09-02T06:15:12.140Z  INFO 14584 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-02T06:15:12.159Z  INFO 14584 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-02T06:15:12.270Z  INFO 14584 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@474e34e4
+2025-09-02T06:15:12.271Z  INFO 14584 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+Hibernate: 
+    alter table cause 
+       drop 
+       foreign key FKfca602pnjn4gtgb4xnfnk1h5a
+Hibernate: 
+    alter table donation 
+       drop 
+       foreign key FKoldwdcq1ocmjfhu0m10btfqlq
+Hibernate: 
+    drop table if exists cause
+Hibernate: 
+    drop table if exists donation
+Hibernate: 
+    drop table if exists ngo
+Hibernate: 
+    drop table if exists users
+Hibernate: 
+    create table cause (
+        current_amount decimal(38,2),
+        end_date date not null,
+        is_active bit,
+        start_date date not null,
+        target_amount decimal(38,2) not null,
+        id bigint not null auto_increment,
+        ngo_id bigint,
+        title varchar(100) not null,
+        description varchar(1000),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table donation (
+        amount decimal(38,2) not null,
+        is_anonymous bit,
+        cause_id bigint,
+        donation_date datetime(6),
+        id bigint not null auto_increment,
+        message varchar(200),
+        donor_email varchar(255) not null,
+        donor_name varchar(255) not null,
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table ngo (
+        id bigint not null auto_increment,
+        name varchar(100) not null,
+        description varchar(500),
+        contact_email varchar(255) not null,
+        registration_number varchar(255) not null,
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table users (
+        id bigint not null auto_increment,
+        username varchar(50) not null,
+        email varchar(100) not null,
+        password varchar(100) not null,
+        role enum ('DONOR','NGO_ADMIN','SYSTEM_ADMIN'),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    alter table ngo 
+       add constraint uk_registration_number unique (registration_number)
+Hibernate: 
+    alter table cause 
+       add constraint FKfca602pnjn4gtgb4xnfnk1h5a 
+       foreign key (ngo_id) 
+       references ngo (id)
+Hibernate: 
+    alter table donation 
+       add constraint FKoldwdcq1ocmjfhu0m10btfqlq 
+       foreign key (cause_id) 
+       references cause (id)
+2025-09-02T06:15:13.182Z  INFO 14584 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-02T06:15:13.475Z  WARN 14584 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-09-02T06:15:13.718Z  INFO 14584 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-02T06:15:13.725Z  INFO 14584 --- [           main] .e.s.DonationManagementSystemApplication : Started DonationManagementSystemApplication in 3.0 seconds (process running for 3.195)
+Hibernate: 
+    select
+        count(*) 
+    from
+        ngo n1_0
+2025-09-02T06:23:11.535Z  INFO 14584 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-02T06:23:11.535Z  INFO 14584 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-02T06:23:11.536Z  INFO 14584 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.current_amount,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.is_active,
+        c1_0.ngo_id,
+        c1_0.start_date,
+        c1_0.target_amount,
+        c1_0.title 
+    from
+        cause c1_0 
+    where
+        c1_0.is_active=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.current_amount,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.is_active,
+        c1_0.ngo_id,
+        c1_0.start_date,
+        c1_0.target_amount,
+        c1_0.title 
+    from
+        cause c1_0 
+    where
+        c1_0.is_active=?
+[789.673s][warning][os,thread] Failed to start thread "Unknown thread" - pthread_create failed (EAGAIN) for attributes: stacksize: 1024k, guardsize: 0k, detached.
+[791.106s][warning][os,thread] Failed to start thread "Unknown thread" - pthread_create failed (EAGAIN) for attributes: stacksize: 1024k, guardsize: 0k, detached.

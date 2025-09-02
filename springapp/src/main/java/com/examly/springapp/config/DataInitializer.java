@@ -2,8 +2,10 @@ package com.examly.springapp.config;
 
 import com.examly.springapp.model.NGO;
 import com.examly.springapp.model.Cause;
+import com.examly.springapp.model.User;
 import com.examly.springapp.repository.NGORepository;
 import com.examly.springapp.repository.CauseRepository;
+import com.examly.springapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -19,6 +21,9 @@ public class DataInitializer implements CommandLineRunner {
 
     @Autowired
     private CauseRepository causeRepository;
+    
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -78,6 +83,31 @@ public class DataInitializer implements CommandLineRunner {
             cause3.setStartDate(LocalDate.now().minusWeeks(3));
             cause3.setEndDate(LocalDate.now().plusMonths(3));
             causeRepository.save(cause3);
+            
+            // Create sample users
+            if (userRepository.count() == 0) {
+                User admin = new User();
+                admin.setUsername("admin");
+                admin.setEmail("admin@system.com");
+                admin.setPassword("admin123");
+                admin.setRole(User.Role.SYSTEM_ADMIN);
+                userRepository.save(admin);
+                
+                User ngoUser = new User();
+                ngoUser.setUsername("ngo1");
+                ngoUser.setEmail("ngo1@example.com");
+                ngoUser.setPassword("ngo123");
+                ngoUser.setRole(User.Role.NGO_ADMIN);
+                userRepository.save(ngoUser);
+                
+                User donor = new User();
+                donor.setUsername("donor1");
+                donor.setEmail("donor1@example.com");
+                donor.setPassword("donor123");
+                donor.setRole(User.Role.DONOR);
+                userRepository.save(donor);
+            }
+            
             System.out.println("Sample data created successfully!");
         }
     }

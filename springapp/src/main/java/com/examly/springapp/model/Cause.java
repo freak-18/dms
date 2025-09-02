@@ -20,6 +20,9 @@ public class Cause {
     @Size(max = 1000)
     private String description;
 
+    @Size(max = 100)
+    private String category;
+
     @NotNull @DecimalMin(value = "0.01")
     @Column(name = "target_amount", nullable = false)
     private BigDecimal targetAmount;
@@ -54,6 +57,7 @@ public class Cause {
     public Long getId() { return id; } public void setId(Long id) { this.id = id; }
     public String getTitle() { return title; } public void setTitle(String title) { this.title = title; }
     public String getDescription() { return description; } public void setDescription(String description) { this.description = description; }
+    public String getCategory() { return category; } public void setCategory(String category) { this.category = category; }
     public BigDecimal getTargetAmount() { return targetAmount; } public void setTargetAmount(BigDecimal targetAmount) { this.targetAmount = targetAmount; }
     public BigDecimal getCurrentAmount() { return currentAmount; } public void setCurrentAmount(BigDecimal currentAmount) { this.currentAmount = currentAmount; }
     public LocalDate getStartDate() { return startDate; } public void setStartDate(LocalDate startDate) { this.startDate = startDate; }
